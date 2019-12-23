@@ -1,4 +1,5 @@
 // Task 1.
+
 function splitAndMerge(str, sp) {
   return str
     .split("")
@@ -9,6 +10,7 @@ function splitAndMerge(str, sp) {
 }
 
 // Task 2.
+
 function convert(hash) {
   var newArray = [];
   for (key in hash) {
@@ -29,6 +31,7 @@ function toCamelCase(string) {
 }
 
 // Task 4
+
 function reverse(string) {
   return string
     .split(" ")
@@ -42,6 +45,7 @@ function reverse(string) {
 }
 
 // Task 5
+
 function stringExpansion(string) {
   if (string === "") {
     return string;
@@ -59,11 +63,35 @@ function stringExpansion(string) {
         }
       }
     }
-    return newArray;
+    return newArray.join("");
   }
 }
 
+// Version 2 (without for)
+
+function stringExpansion(string) {
+  var symbols = string.split("");
+  var i = 0;
+  var newArray = [];
+  function processSingleChar() {
+    i < symbols.length &&
+      (!parseInt(symbols[i])
+        ? (newArray.push(symbols[i]), i++, processSingleChar())
+        : processMultipleChar());
+  }
+  function processMultipleChar() {
+    i < symbols.length &&
+      !parseInt(symbols[i + 1]) &&
+      (newArray.push(symbols[i + 1].repeat(symbols[i])), i++),
+      i++,
+      processSingleChar();
+  }
+  processSingleChar();
+  return newArray.join("");
+}
+
 // Task 6
+
 function largest() {
   return Math.max.apply(null, arguments);
 }
@@ -86,6 +114,7 @@ function transform(arr) {
 }
 
 // Task 8
+
 function sum() {
   var args = Array.prototype.slice.call(arguments);
   function add(array) {
@@ -110,3 +139,12 @@ function countDown(num) {
 }
 
 // Task 10
+
+Function.prototype.myBind = function(context) {
+  var fn = this;
+  var rest = Array.prototype.slice.call(arguments, 1);
+  return function() {
+    var args = Array.prototype.slice.call(arguments);
+    return fn.apply(context, rest.concat(args));
+  };
+};
