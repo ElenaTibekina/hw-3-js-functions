@@ -1,5 +1,4 @@
 // Task 1.
-
 function splitAndMerge(str, sp) {
   return str
     .split("")
@@ -10,7 +9,6 @@ function splitAndMerge(str, sp) {
 }
 
 // Task 2.
-
 function convert(hash) {
   var newArray = [];
   for (key in hash) {
@@ -20,7 +18,6 @@ function convert(hash) {
 }
 
 // Task 3.
-
 function toCamelCase(string) {
   var newArray = string.split(/[_-]/g);
   for (var i = 1; i < newArray.length; i++) {
@@ -31,7 +28,6 @@ function toCamelCase(string) {
 }
 
 // Task 4
-
 function reverse(string) {
   return string
     .split(" ")
@@ -45,7 +41,6 @@ function reverse(string) {
 }
 
 // Task 5
-
 function stringExpansion(string) {
   if (string === "") {
     return string;
@@ -68,7 +63,6 @@ function stringExpansion(string) {
 }
 
 // Version 2 (without for)
-
 function stringExpansion(string) {
   var symbols = string.split("");
   var i = 0;
@@ -91,7 +85,6 @@ function stringExpansion(string) {
 }
 
 // Task 6
-
 function largest() {
   return Math.max.apply(null, arguments);
 }
@@ -101,34 +94,22 @@ function smallest() {
 }
 
 // Task 7
-
 function transform(arr) {
-  var result = [];
-  for (var i = 0; i < arr.length; i++) {
-    var index = i;
-    result.push(function() {
-      return arr[index];
-    });
-  }
-  return result;
+  return arr.map(function(item) {
+    return function() {
+      return item;
+    };
+  });
 }
 
 // Task 8
-
 function sum() {
-  var args = Array.prototype.slice.call(arguments);
-  function add(array) {
-    if (array.length === 0) {
-      return 0;
-    } else {
-      return array[0] + add(array.slice(1));
-    }
-  }
-  return add(args);
+  return Array.prototype.slice.call(arguments).reduce(function(sum, current) {
+    return sum + current;
+  }, 0);
 }
 
 // Task 9
-
 function countDown(num) {
   setTimeout(function run() {
     if (num >= 0) {
@@ -139,7 +120,6 @@ function countDown(num) {
 }
 
 // Task 10
-
 Function.prototype.myBind = function(context) {
   var fn = this;
   var rest = Array.prototype.slice.call(arguments, 1);
